@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 import michal.zawadzki.workdayapp.model.dictionary.Project;
 
 @Entity
-@Table("work_task")
+@Table(name = "work_task")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class WorkTask extends Task {

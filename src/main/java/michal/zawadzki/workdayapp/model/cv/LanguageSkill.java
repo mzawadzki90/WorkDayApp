@@ -28,6 +28,10 @@ public class LanguageSkill {
 	private int id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cv_id", nullable = false)
+	private CV cv;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "language_id", nullable = false)
 	private Language language;
 

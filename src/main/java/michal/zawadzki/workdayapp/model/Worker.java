@@ -58,7 +58,7 @@ public class Worker {
 	@OrderBy("since DESC")
 	private List<Occupation> occupations;
 
-	@OneToMany(mappedBy = "worker")
+	@OneToMany(mappedBy = "id.worker")
 	@OrderBy("createdAt DESC")
 	private List<LeaveRequest> leaveRequests;
 
@@ -66,7 +66,7 @@ public class Worker {
 	@OrderBy("createdAt DESC")
 	private List<WorktimeReport> worktimeReports;
 
-	@OneToMany(mappedBy = "worker")
+	@OneToMany(mappedBy = "id.worker")
 	@OrderBy("since DESC")
 	private List<Rent> rents;
 

@@ -38,7 +38,7 @@ public class Equipment {
 	@Column(name = "production_year")
 	private Integer productionYear;
 
-	@OneToMany(mappedBy = "equipment")
+	@OneToMany(mappedBy = "id.equipment")
 	@OrderBy("since DESC")
 	private List<Rent> rents;
 

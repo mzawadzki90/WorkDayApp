@@ -27,7 +27,7 @@ import lombok.Data;
 import michal.zawadzki.workdayapp.model.Worker;
 
 @Entity
-@Table("worktime_report")
+@Table(name = "worktime_report")
 @Data
 public class WorktimeReport {
 
@@ -51,7 +51,7 @@ public class WorktimeReport {
 	@Column(name = "modified_at", nullable = false)
 	private Date modifiedAt;
 
-	@OneToMany(mappedBy = "worktime_report")
+	@OneToMany(mappedBy = "worktimeReport")
 	@OrderBy("date")
 	private List<WorkDay> workDays;
 

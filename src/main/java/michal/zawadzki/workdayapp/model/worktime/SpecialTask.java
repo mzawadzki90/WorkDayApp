@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 import michal.zawadzki.workdayapp.model.dictionary.SpecialActivity;
 
 @Entity
-@Table("special_task")
+@Table(name = "special_task")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class SpecialTask extends Task {

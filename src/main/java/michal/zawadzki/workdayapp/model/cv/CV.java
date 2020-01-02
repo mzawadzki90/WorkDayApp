@@ -6,12 +6,15 @@ package michal.zawadzki.workdayapp.model.cv;
 
 import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -33,7 +36,8 @@ public class CV {
 	@JoinColumn(name = "worker_id", nullable = false)
 	private Worker worker;
 
-	@OneToMany(mappedBy = "cv")
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "cv_to_skill", joinColumns = { @JoinColumn(name = "cv_id") }, inverseJoinColumns = { @JoinColumn(name = "skill_id") })
 	private Set<Skill> skills;
 
 	@OneToMany(mappedBy = "cv")
