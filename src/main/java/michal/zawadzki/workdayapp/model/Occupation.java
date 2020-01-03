@@ -51,4 +51,22 @@ public class Occupation {
 	@Temporal(TemporalType.DATE)
 	private Date till;
 
+	public Occupation() {
+	}
+
+	public Occupation(Worker worker, Department department, Team team, Position position, Date since, Date till) {
+		this.worker = worker;
+		this.department = department;
+		this.team = team;
+		this.position = position;
+		this.since = since;
+		this.till = till;
+	}
+
+	@Override
+	public String toString() {
+		return "Occupation{" + "id=" + id + ", worker=" + worker + ", department=" + department + ", team=" + team + ", position="
+				+ position + ", since=" + since + ", till=" + till + '}';
+	}
+
 }

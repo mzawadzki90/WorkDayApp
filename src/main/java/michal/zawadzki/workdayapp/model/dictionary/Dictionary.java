@@ -20,4 +20,16 @@ public abstract class Dictionary {
 	@Column(nullable = false, unique = true)
 	private String name;
 
+	public Dictionary() {
+	}
+
+	public Dictionary(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Dictionary{" + "id=" + id + ", name='" + name + '\'' + '}';
+	}
+
 }

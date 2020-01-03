@@ -46,4 +46,21 @@ public class Leave {
 	@JoinColumn(name = "replacement_id")
 	private Worker replacement;
 
+	public Leave() {
+	}
+
+	public Leave(LeaveType type, Date since, Date till, int days, Worker replacement) {
+		this.type = type;
+		this.since = since;
+		this.till = till;
+		this.days = days;
+		this.replacement = replacement;
+	}
+
+	@Override
+	public String toString() {
+		return "Leave{" + "id=" + id + ", type=" + type + ", since=" + since + ", till=" + till + ", days=" + days + ", replacement="
+				+ replacement + '}';
+	}
+
 }

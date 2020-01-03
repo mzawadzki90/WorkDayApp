@@ -33,4 +33,20 @@ public abstract class Experience {
 	@Column(name = "short_description")
 	private String shortDescription;
 
+	public Experience() {
+	}
+
+	public Experience(CV cv, Integer startYear, Integer endYear, String shortDescription) {
+		this.cv = cv;
+		this.startYear = startYear;
+		this.endYear = endYear;
+		this.shortDescription = shortDescription;
+	}
+
+	@Override
+	public String toString() {
+		return "Experience{" + "id=" + id + ", cv=" + cv + ", startYear=" + startYear + ", endYear=" + endYear + ", shortDescription='"
+				+ shortDescription + '\'' + '}';
+	}
+
 }

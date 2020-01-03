@@ -17,4 +17,18 @@ public class Education extends Experience {
 
 	private String title;
 
+	public Education() {
+	}
+
+	public Education(CV cv, Integer startYear, Integer endYear, String shortDescription, String schoolName, String title) {
+		super(cv, startYear, endYear, shortDescription);
+		this.schoolName = schoolName;
+		this.title = title;
+	}
+
+	@Override
+	public String toString() {
+		return "Education{" + "schoolName='" + schoolName + '\'' + ", title='" + title + '\'' + "} " + super.toString();
+	}
+
 }

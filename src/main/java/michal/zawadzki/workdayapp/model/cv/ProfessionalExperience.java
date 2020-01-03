@@ -18,4 +18,20 @@ public class ProfessionalExperience extends Experience {
 	@Column(name = "position_name", nullable = false)
 	private String positionName;
 
+	public ProfessionalExperience() {
+	}
+
+	public ProfessionalExperience(CV cv, Integer startYear, Integer endYear, String shortDescription, String companyName,
+			String positionName) {
+		super(cv, startYear, endYear, shortDescription);
+		this.companyName = companyName;
+		this.positionName = positionName;
+	}
+
+	@Override
+	public String toString() {
+		return "ProfessionalExperience{" + "companyName='" + companyName + '\'' + ", positionName='" + positionName + '\'' + "} "
+				+ super.toString();
+	}
+
 }

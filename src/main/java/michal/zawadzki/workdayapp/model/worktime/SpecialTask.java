@@ -19,4 +19,17 @@ public class SpecialTask extends Task {
 	@JoinColumn(name = "special_activity_id", nullable = false)
 	private SpecialActivity specialActivity;
 
+	public SpecialTask() {
+	}
+
+	public SpecialTask(WorkDay workDay, Long timeMills, SpecialActivity specialActivity) {
+		super(workDay, timeMills);
+		this.specialActivity = specialActivity;
+	}
+
+	@Override
+	public String toString() {
+		return "SpecialTask{" + "specialActivity=" + specialActivity + "} " + super.toString();
+	}
+
 }

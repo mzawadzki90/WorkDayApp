@@ -49,4 +49,21 @@ public class WorkDay {
 	@OneToMany(mappedBy = "workDay")
 	private Set<SpecialTask> specialTasks;
 
+	public WorkDay() {
+	}
+
+	public WorkDay(WorktimeReport worktimeReport, Date date, Date startTime, Date endTime, Set<WorkTask> tasks) {
+		this.worktimeReport = worktimeReport;
+		this.date = date;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.tasks = tasks;
+	}
+
+	@Override
+	public String toString() {
+		return "WorkDay{" + "id=" + id + ", worktimeReport=" + worktimeReport + ", date=" + date + ", startTime=" + startTime + ", endTime="
+				+ endTime + ", tasks=" + tasks + ", specialTasks=" + specialTasks + '}';
+	}
+
 }

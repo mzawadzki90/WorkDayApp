@@ -40,4 +40,21 @@ public class Equipment {
 	@OrderBy("since DESC")
 	private List<Rent> rents;
 
+	public Equipment() {
+	}
+
+	public Equipment(EquipmentCategory category, String model, String producer, Integer productionYear, List<Rent> rents) {
+		this.category = category;
+		this.model = model;
+		this.producer = producer;
+		this.productionYear = productionYear;
+		this.rents = rents;
+	}
+
+	@Override
+	public String toString() {
+		return "Equipment{" + "id=" + id + ", category=" + category + ", model='" + model + '\'' + ", producer='" + producer + '\''
+				+ ", productionYear=" + productionYear + ", rents=" + rents + '}';
+	}
+
 }
