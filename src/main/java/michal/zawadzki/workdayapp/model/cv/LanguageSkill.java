@@ -37,4 +37,18 @@ public class LanguageSkill {
 	@Column(nullable = false)
 	private LanguageLevel level;
 
+	public LanguageSkill() {
+	}
+
+	public LanguageSkill(CV cv, Language language, LanguageLevel level) {
+		this.cv = cv;
+		this.language = language;
+		this.level = level;
+	}
+
+	@Override
+	public String toString() {
+		return "LanguageSkill{" + "id=" + id + ", cv=" + cv + ", language=" + language + ", level=" + level + '}';
+	}
+
 }

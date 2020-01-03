@@ -53,4 +53,17 @@ public class CV {
 	@OrderBy("startYear DESC")
 	private List<Certificate> certificates;
 
+	public CV() {
+	}
+
+	public CV(Worker worker, Set<Skill> skills, List<ProfessionalExperience> experiences, List<Education> educations,
+			Set<LanguageSkill> languageSkills, List<Certificate> certificates) {
+		this.worker = worker;
+		this.skills = skills;
+		this.experiences = experiences;
+		this.educations = educations;
+		this.languageSkills = languageSkills;
+		this.certificates = certificates;
+	}
+
 }

@@ -27,4 +27,17 @@ public abstract class Task {
 	@Column(name = "time_mills", nullable = false)
 	private Long timeMills;
 
+	public Task() {
+	}
+
+	public Task(WorkDay workDay, Long timeMills) {
+		this.workDay = workDay;
+		this.timeMills = timeMills;
+	}
+
+	@Override
+	public String toString() {
+		return "Task{" + "id=" + id + ", workDay=" + workDay + ", timeMills=" + timeMills + '}';
+	}
+
 }

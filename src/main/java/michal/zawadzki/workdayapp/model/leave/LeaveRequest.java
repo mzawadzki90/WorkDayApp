@@ -35,6 +35,14 @@ public class LeaveRequest {
 	@Column(name = "modified_at", nullable = false)
 	private Date modifiedAt;
 
+	public LeaveRequest() {
+	}
+
+	public LeaveRequest(LeaveRequestId id, LeaveRequestStatus status) {
+		this.id = id;
+		this.status = status;
+	}
+
 	@PrePersist
 	private void onPersist() {
 		Date now = new Date();
@@ -45,6 +53,11 @@ public class LeaveRequest {
 	@PreUpdate
 	private void onUpdate() {
 		modifiedAt = new Date();
+	}
+
+	@Override
+	public String toString() {
+		return "LeaveRequest{" + "id=" + id + ", status=" + status + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
 	}
 
 }

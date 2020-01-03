@@ -76,4 +76,33 @@ public class Worker {
 	@Column(name = "mobile_number")
 	private String mobileNumber;
 
+	public Worker() {
+	}
+
+	public Worker(Role role, String email, String firstName, String lastName, Worker supervisor, CV cv, List<Occupation> occupations,
+			List<LeaveRequest> leaveRequests, List<WorktimeReport> worktimeReports, List<Rent> rents, String room, String stationaryNumber,
+			String mobileNumber) {
+		this.role = role;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.supervisor = supervisor;
+		this.cv = cv;
+		this.occupations = occupations;
+		this.leaveRequests = leaveRequests;
+		this.worktimeReports = worktimeReports;
+		this.rents = rents;
+		this.room = room;
+		this.stationaryNumber = stationaryNumber;
+		this.mobileNumber = mobileNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "Worker{" + "id=" + id + ", role=" + role + ", email='" + email + '\'' + ", firstName='" + firstName + '\'' + ", lastName='"
+				+ lastName + '\'' + ", supervisor=" + supervisor + ", cv=" + cv + ", occupations=" + occupations + ", leaveRequests="
+				+ leaveRequests + ", worktimeReports=" + worktimeReports + ", rents=" + rents + ", room='" + room + '\''
+				+ ", stationaryNumber='" + stationaryNumber + '\'' + ", mobileNumber='" + mobileNumber + '\'' + '}';
+	}
+
 }

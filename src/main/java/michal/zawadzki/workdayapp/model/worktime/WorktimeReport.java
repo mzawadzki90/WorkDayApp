@@ -53,6 +53,15 @@ public class WorktimeReport {
 	@OrderBy("date")
 	private List<WorkDay> workDays;
 
+	public WorktimeReport() {
+	}
+
+	public WorktimeReport(Worker worker, WorktimeReportStatus status, List<WorkDay> workDays) {
+		this.worker = worker;
+		this.status = status;
+		this.workDays = workDays;
+	}
+
 	@PrePersist
 	private void onPersist() {
 		Date now = new Date();
@@ -63,6 +72,12 @@ public class WorktimeReport {
 	@PreUpdate
 	private void onUpdate() {
 		modifiedAt = new Date();
+	}
+
+	@Override
+	public String toString() {
+		return "WorktimeReport{" + "id=" + id + ", worker=" + worker + ", status=" + status + ", createdAt=" + createdAt + ", modifiedAt="
+				+ modifiedAt + ", workDays=" + workDays + '}';
 	}
 
 }

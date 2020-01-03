@@ -28,4 +28,19 @@ public class Rent {
 
 	private String comments;
 
+	public Rent() {
+	}
+
+	public Rent(RentId id, Date since, Date till, String comments) {
+		this.id = id;
+		this.since = since;
+		this.till = till;
+		this.comments = comments;
+	}
+
+	@Override
+	public String toString() {
+		return "Rent{" + "id=" + id + ", since=" + since + ", till=" + till + ", comments='" + comments + '\'' + '}';
+	}
+
 }

@@ -19,4 +19,17 @@ public class WorkTask extends Task {
 	@JoinColumn(name = "project_id", nullable = false)
 	private Project project;
 
+	public WorkTask() {
+	}
+
+	public WorkTask(WorkDay workDay, Long timeMills, Project project) {
+		super(workDay, timeMills);
+		this.project = project;
+	}
+
+	@Override
+	public String toString() {
+		return "WorkTask{" + "project=" + project + "} " + super.toString();
+	}
+
 }
