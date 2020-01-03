@@ -15,11 +15,9 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.Data;
 
 @Entity
 @Table(name = "leave_request")
-@Data
 public class LeaveRequest {
 
 	@EmbeddedId

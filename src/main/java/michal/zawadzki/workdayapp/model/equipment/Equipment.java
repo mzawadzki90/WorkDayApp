@@ -15,11 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import lombok.Data;
 
 @Entity
 @Table(name = "equipment")
-@Data
 public class Equipment {
 
 	@Id

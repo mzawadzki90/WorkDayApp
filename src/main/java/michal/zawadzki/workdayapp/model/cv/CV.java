@@ -19,12 +19,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import lombok.Data;
 import michal.zawadzki.workdayapp.model.Worker;
 import michal.zawadzki.workdayapp.model.dictionary.Skill;
 
 @Entity
-@Data
 @Table(name = "cv")
 public class CV {
 

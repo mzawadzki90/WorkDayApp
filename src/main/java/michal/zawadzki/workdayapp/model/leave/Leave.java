@@ -18,12 +18,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.Data;
 import michal.zawadzki.workdayapp.model.Worker;
 
 @Entity
 @Table(name = "leave")
-@Data
 public class Leave {
 
 	@Id

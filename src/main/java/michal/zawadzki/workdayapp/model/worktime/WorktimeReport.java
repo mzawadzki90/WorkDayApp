@@ -23,12 +23,10 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.Data;
 import michal.zawadzki.workdayapp.model.Worker;
 
 @Entity
 @Table(name = "worktime_report")
-@Data
 public class WorktimeReport {
 
 	@Id

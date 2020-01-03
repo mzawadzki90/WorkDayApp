@@ -16,14 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.Data;
 import michal.zawadzki.workdayapp.model.dictionary.Department;
 import michal.zawadzki.workdayapp.model.dictionary.Position;
 import michal.zawadzki.workdayapp.model.dictionary.Team;
 
 @Entity
 @Table(name = "occupation")
-@Data
 public class Occupation {
 
 	@Id

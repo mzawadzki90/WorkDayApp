@@ -9,14 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import michal.zawadzki.workdayapp.model.dictionary.Project;
 
 @Entity
 @Table(name = "work_task")
-@Data
-@EqualsAndHashCode(callSuper = true)
 public class WorkTask extends Task {
 
 	@ManyToOne(fetch = FetchType.LAZY)
