@@ -9,11 +9,9 @@ import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.Data;
 import michal.zawadzki.workdayapp.model.Worker;
 
 @Embeddable
-@Data
 public class LeaveRequestId implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)

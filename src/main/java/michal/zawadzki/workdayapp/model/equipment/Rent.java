@@ -11,11 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.Data;
 
 @Entity
 @Table(name = "rent")
-@Data
 public class Rent {
 
 	@EmbeddedId

@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import lombok.Data;
 import michal.zawadzki.workdayapp.model.cv.CV;
 import michal.zawadzki.workdayapp.model.equipment.Rent;
 import michal.zawadzki.workdayapp.model.leave.LeaveRequest;
@@ -26,7 +25,6 @@ import michal.zawadzki.workdayapp.model.worktime.WorktimeReport;
 
 @Entity
 @Table(name = "worker")
-@Data
 public class Worker {
 
 	@Id

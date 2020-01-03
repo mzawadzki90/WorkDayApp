@@ -15,12 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import lombok.Data;
 import michal.zawadzki.workdayapp.model.dictionary.Language;
 
 @Entity
 @Table(name = "language_skill")
-@Data
 public class LanguageSkill {
 
 	@Id

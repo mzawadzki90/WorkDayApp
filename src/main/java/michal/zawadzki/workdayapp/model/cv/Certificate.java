@@ -7,13 +7,9 @@ package michal.zawadzki.workdayapp.model.cv;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "certificate")
-@Data
-@EqualsAndHashCode(callSuper = true)
 public class Certificate extends Experience {
 
 	@Column(nullable = false)

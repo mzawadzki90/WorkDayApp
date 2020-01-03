@@ -12,10 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import lombok.Data;
 
 @MappedSuperclass
-@Data
 public abstract class Task {
 
 	@Id
