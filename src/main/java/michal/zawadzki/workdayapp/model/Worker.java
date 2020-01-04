@@ -5,6 +5,8 @@
 package michal.zawadzki.workdayapp.model;
 
 import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,6 +31,7 @@ public class Worker {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Access(AccessType.PROPERTY)
 	private int id;
 
 	@Enumerated(EnumType.STRING)
@@ -94,6 +97,118 @@ public class Worker {
 		this.rents = rents;
 		this.room = room;
 		this.stationaryNumber = stationaryNumber;
+		this.mobileNumber = mobileNumber;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Worker getSupervisor() {
+		return supervisor;
+	}
+
+	public void setSupervisor(Worker supervisor) {
+		this.supervisor = supervisor;
+	}
+
+	public CV getCv() {
+		return cv;
+	}
+
+	public void setCv(CV cv) {
+		this.cv = cv;
+	}
+
+	public List<Occupation> getOccupations() {
+		return occupations;
+	}
+
+	public void setOccupations(List<Occupation> occupations) {
+		this.occupations = occupations;
+	}
+
+	public List<LeaveRequest> getLeaveRequests() {
+		return leaveRequests;
+	}
+
+	public void setLeaveRequests(List<LeaveRequest> leaveRequests) {
+		this.leaveRequests = leaveRequests;
+	}
+
+	public List<WorktimeReport> getWorktimeReports() {
+		return worktimeReports;
+	}
+
+	public void setWorktimeReports(List<WorktimeReport> worktimeReports) {
+		this.worktimeReports = worktimeReports;
+	}
+
+	public List<Rent> getRents() {
+		return rents;
+	}
+
+	public void setRents(List<Rent> rents) {
+		this.rents = rents;
+	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
+	public String getStationaryNumber() {
+		return stationaryNumber;
+	}
+
+	public void setStationaryNumber(String stationaryNumber) {
+		this.stationaryNumber = stationaryNumber;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 

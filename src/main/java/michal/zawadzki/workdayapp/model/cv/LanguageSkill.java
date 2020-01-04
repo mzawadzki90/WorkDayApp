@@ -46,6 +46,38 @@ public class LanguageSkill {
 		this.level = level;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public CV getCv() {
+		return cv;
+	}
+
+	public void setCv(CV cv) {
+		this.cv = cv;
+	}
+
+	public Language getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+
+	public LanguageLevel getLevel() {
+		return level;
+	}
+
+	public void setLevel(LanguageLevel level) {
+		this.level = level;
+	}
+
 	@Override
 	public String toString() {
 		return "LanguageSkill{" + "id=" + id + ", cv=" + cv + ", language=" + language + ", level=" + level + '}';

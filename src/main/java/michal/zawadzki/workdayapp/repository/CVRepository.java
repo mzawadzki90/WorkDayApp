@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CVRepository extends CrudRepository<CV, Integer> {
 
-	@Query(value = "SELECT cv FROM CV cv LEFT JOIN FETCH cv.worker LEFT JOIN FETCH cv.skills s LEFT JOIN FETCH cv.languageSkills ls"
-			+ " LEFT JOIN FETCH ls.language ")
+	@Query(value =
+			"SELECT DISTINCT cv FROM CV cv LEFT JOIN FETCH cv.worker LEFT JOIN FETCH cv.skills s LEFT JOIN FETCH cv.languageSkills ls"
+					+ " LEFT JOIN FETCH ls.language ")
 	List<CV> listWithMetadata();
 
 }

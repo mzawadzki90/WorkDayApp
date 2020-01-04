@@ -6,10 +6,12 @@ package michal.zawadzki.workdayapp.model.cv;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "professional_experience")
+@PrimaryKeyJoinColumn(name = "experienceId")
 public class ProfessionalExperience extends Experience {
 
 	@Column(name = "company_name", nullable = false)
