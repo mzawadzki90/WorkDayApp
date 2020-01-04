@@ -43,6 +43,26 @@ public abstract class Experience {
 		this.shortDescription = shortDescription;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public CV getCv() {
+		return cv;
+	}
+
+	public Integer getStartYear() {
+		return startYear;
+	}
+
+	public Integer getEndYear() {
+		return endYear;
+	}
+
+	public String getShortDescription() {
+		return shortDescription;
+	}
+
 	@Override
 	public String toString() {
 		return "Experience{" + "id=" + id + ", cv=" + cv + ", startYear=" + startYear + ", endYear=" + endYear + ", shortDescription='"
