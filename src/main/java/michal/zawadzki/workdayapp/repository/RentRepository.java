@@ -12,7 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RentRepository extends CrudRepository<RentId, Rent> {
+public interface RentRepository extends CrudRepository<Rent, RentId> {
 
 	@Query(value = "SELECT r FROM Rent r LEFT JOIN FETCH r.id.worker w LEFT JOIN FETCH r.id.equipment e WHERE w.id = :workerId")
 	List<Rent> listByWorkerId(int workerId);

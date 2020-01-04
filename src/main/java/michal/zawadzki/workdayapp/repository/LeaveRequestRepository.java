@@ -12,7 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LeaveRequestRepository extends CrudRepository<LeaveRequestId, LeaveRequest> {
+public interface LeaveRequestRepository extends CrudRepository<LeaveRequest, LeaveRequestId> {
 
 	@Query(value =
 			"SELECT lr FROM LeaveRequest lr LEFT JOIN FETCH lr.id.worker w LEFT JOIN FETCH lr.id.leave l LEFT JOIN FETCH l.replacement r"
