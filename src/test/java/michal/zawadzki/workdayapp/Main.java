@@ -55,23 +55,33 @@ class Main {
 
 	@Test
 	void creationAndReadOfAllObjectsShouldSucceed() {
+		// utworzenie obiektu pracownika
 		Worker worker = new WorkerBuilder().withFirstName("Jan")
 				.withLastName("Kowalski")
 				.withRole(Role.REGULAR_EMPLOYEE)
 				.withEmail("jan.kowalski@test.pl")
 				.build();
 
+		// zapis do bazy
 		em.persist(worker);
 
+		// utworzenie obiektu słownikowego
 		Department department = new Department("Test Department");
+		// zapis do bazy
 		em.persist(department);
 
+		// utworzenie obiektu słownikowego
 		Team team = new Team("Test team");
+		// zapis do bazy
 		em.persist(team);
 
+		// utworzenie obiektu słownikowego
 		Position position1 = new Position("Starszy programista");
+		// zapis do bazy
 		em.persist(position1);
 
+		// asocjacja 1/* jeden pracownik mógł zajmować wiele stanowisk podczas pracy w firmie
+		// utworzenie obiektu dla stanowiska pracownika
 		Occupation occupation1 = new OccupationBuilder().withWorker(worker)
 				.withDepartment(department)
 				.withTeam(team)
@@ -79,57 +89,79 @@ class Main {
 				.withSince(Date.valueOf(LocalDate.of(2014, 3, 12)))
 				.withTill(Date.valueOf(LocalDate.of(2017, 6, 30)))
 				.build();
+		// zapis do bazy
 		em.persist(occupation1);
 
+		// utworzenie obiektu słownikowego
 		Position position2 = new Position("Architekt systemów");
+		// zapis do bazy
 		em.persist(position2);
 
+		// utworzenie obiektu dla stanowiska pracownika
 		Occupation occupation2 = new OccupationBuilder().withWorker(worker)
 				.withDepartment(department)
 				.withTeam(team)
 				.withPosition(position2)
 				.withSince(Date.valueOf(LocalDate.of(2017, 7, 1)))
 				.build();
+		// zapis do bazy
 		em.persist(occupation2);
 
+		// utworzenie obiektu słownikowego
 		Skill skill = new Skill("Programowanie");
+		// zapis do bazy
 		em.persist(skill);
 
+		// utworzenie obiektu reprezentującego CV pracownika
 		CV cv = new CVBuilder().withWorker(worker).withSkills(Collections.singleton(skill)).build();
+		// zapis do bazy
 		em.persist(cv);
 
+		// utworzenie obiektu słownikowego
 		Language language = new Language("Angielski");
+		// zapis do bazy
 		em.persist(language);
 
+		// utworzenie obiektu reprezentującego umiejętności językowe pracownika
 		LanguageSkill languageSkill = new LanguageSkill(cv, language, LanguageLevel.B2);
+		// zapis do bazy
 		em.persist(languageSkill);
 
+		// dziedziczenie: Certificate, Education i ProfessionalExperience dziedziczą po Experience
+		// utworzenie obiektu reprezentującego doświadcznie zawodowe
 		ProfessionalExperience professionalExperience = new ProfessionalExperienceBuilder().withCv(cv)
 				.withCompanyName("Firma testowa")
 				.withPositionName("Programista")
 				.withStartYear(1999)
 				.withEndYear(2009)
 				.build();
+		// zapis do bazy
 		em.persist(professionalExperience);
 
+		// utworzenie obiektu reprezentującego doświadczenie edukacyjne
 		Education education = new EducationBuilder().withCv(cv)
 				.withSchoolName("Politechnika Warszawska")
 				.withStartYear(2009)
 				.withEndYear(2012)
 				.withTitle("Inżynier")
 				.build();
+		// zapis do bazy
 		em.persist(education);
 
+		// utworzenie obiektu reprezentujągo certyfikat
 		Certificate certificate = new CertificateBuilder().withCv(cv)
 				.withIssuedBy("British Council")
 				.withName("FCE")
 				.withStartYear(2008)
 				.build();
+		// zapis do bazy
 		em.persist(certificate);
 
+		// wymuszenie wykonania operacji na bazie i wyczyszczenie cache'a
 		em.flush();
 		em.clear();
 
+		// pobranie listy pracowników z CV i zajmowanymi przez nich stanowiskami
 		List<Worker> workers = workerRepository.listWithCvAndOccupations();
 		assertEquals(workers.size(), 1);
 		Worker persistedWorker = workers.get(0);
@@ -139,6 +171,7 @@ class Main {
 		assertEquals(persistedWorker.getEmail(), "jan.kowalski@test.pl");
 
 		List<Occupation> occupations = persistedWorker.getOccupations();
+		// w bazie zostały zapisany 2 stanowiska dla pracownika
 		assertEquals(occupations.size(), 2);
 		Occupation persistedOccupation = occupations.get(0);
 		assertEquals(persistedOccupation.getDepartment().getName(), "Test Department");
@@ -146,6 +179,7 @@ class Main {
 		assertEquals(persistedOccupation.getPosition().getName(), "Architekt systemów");
 		assertEquals(persistedOccupation.getSince(), Date.valueOf(LocalDate.of(2017, 7, 1)));
 
+		// pobranie listy CV z metadanymi
 		List<CV> cvs = cvRepository.listWithMetadata();
 		assertEquals(cvs.size(), 1);
 		CV persistedCv = cvs.get(0);
@@ -154,6 +188,7 @@ class Main {
 		assertEquals(persistedLanguageSkill.getLanguage().getName(), "Angielski");
 		assertEquals(persistedLanguageSkill.getLevel(), LanguageLevel.B2);
 
+		//Pobranie listy doświadczeń - sprawdzenie poprawności działania dziedziczenia
 		List<Experience> experiences = experienceRepository.listByWorkerId(worker.getId());
 		assertEquals(experiences.size(), 3);
 		assertEquals(experiences.stream().filter(Certificate.class::isInstance).count(), 1);
