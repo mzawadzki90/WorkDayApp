@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WorkerRepository extends CrudRepository<Worker, Integer> {
 
-	@Query(value = "SELECT w FROM Worker w LEFT JOIN FETCH w.cv LEFT JOIN FETCH w.occupations o LEFT JOIN FETCH o.department"
+	@Query(value = "SELECT DISTINCT w FROM Worker w LEFT JOIN FETCH w.cv LEFT JOIN FETCH w.occupations o LEFT JOIN FETCH o.department"
 			+ " LEFT JOIN FETCH o.position LEFT JOIN FETCH o.team")
 	List<Worker> listWithCvAndOccupations();
 

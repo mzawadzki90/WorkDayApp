@@ -63,6 +63,62 @@ public class Occupation {
 		this.till = till;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Worker getWorker() {
+		return worker;
+	}
+
+	public void setWorker(Worker worker) {
+		this.worker = worker;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	public Date getSince() {
+		return since;
+	}
+
+	public void setSince(Date since) {
+		this.since = since;
+	}
+
+	public Date getTill() {
+		return till;
+	}
+
+	public void setTill(Date till) {
+		this.till = till;
+	}
+
 	@Override
 	public String toString() {
 		return "Occupation{" + "id=" + id + ", worker=" + worker + ", department=" + department + ", team=" + team + ", position="

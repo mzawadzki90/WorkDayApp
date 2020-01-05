@@ -11,4 +11,11 @@ import javax.persistence.Table;
 @Table(name = "project")
 public class Project extends Dictionary {
 
+	public Project() {
+	}
+
+	public Project(String name) {
+		super(name);
+	}
+
 }
