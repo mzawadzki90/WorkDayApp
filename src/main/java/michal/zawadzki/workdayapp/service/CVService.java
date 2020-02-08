@@ -28,17 +28,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class CVService {
 
-	@Autowired
-	private CVRepository cvRepository;
+	private final CVRepository cvRepository;
 
-	@Autowired
-	private CertificateRepository certificateRepository;
+	private final CertificateRepository certificateRepository;
 
-	@Autowired
-	private EducationRepository educationRepository;
+	private final EducationRepository educationRepository;
 
-	@Autowired
-	private ProfessionalExperienceRepository professionalExperienceRepository;
+	private final ProfessionalExperienceRepository professionalExperienceRepository;
+
+	public CVService(
+			CVRepository cvRepository, CertificateRepository certificateRepository,
+			EducationRepository educationRepository,
+			ProfessionalExperienceRepository professionalExperienceRepository) {
+		this.cvRepository                     = cvRepository;
+		this.certificateRepository            = certificateRepository;
+		this.educationRepository              = educationRepository;
+		this.professionalExperienceRepository = professionalExperienceRepository;
+	}
 
 	@Transactional(value = Transactional.TxType.NOT_SUPPORTED)
 	public List<CV> listWithMetadata() {

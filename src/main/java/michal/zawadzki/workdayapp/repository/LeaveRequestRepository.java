@@ -4,19 +4,18 @@
 */
 package michal.zawadzki.workdayapp.repository;
 
-import java.util.List;
 import michal.zawadzki.workdayapp.model.leave.LeaveRequest;
 import michal.zawadzki.workdayapp.model.leave.LeaveRequestId;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LeaveRequestRepository extends CrudRepository<LeaveRequest, LeaveRequestId> {
+public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, LeaveRequestId> {
 
-	@Query(value =
-			"SELECT lr FROM LeaveRequest lr LEFT JOIN FETCH lr.id.worker w LEFT JOIN FETCH lr.id.leave l LEFT JOIN FETCH l.replacement r"
-					+ " WHERE w.id = :workerId")
-	List<LeaveRequest> listByWorkerId(int workerId);
+    @Query(value = "SELECT lr FROM LeaveRequest lr JOIN lr.id.worker w WHERE w.id = :workerId")
+    Page<LeaveRequest> listByWorkerId(int workerId, Pageable pageable);
 
 }

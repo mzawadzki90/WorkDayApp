@@ -4,6 +4,8 @@
 */
 package michal.zawadzki.workdayapp.model.leave;
 
+import michal.zawadzki.workdayapp.model.Worker;
+
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -38,8 +40,8 @@ public class LeaveRequest {
 	public LeaveRequest() {
 	}
 
-	public LeaveRequest(LeaveRequestId id, LeaveRequestStatus status) {
-		this.id = id;
+	public LeaveRequest(Worker worker, Leave leave, LeaveRequestStatus status) {
+		this.id = new LeaveRequestId(worker, leave);
 		this.status = status;
 	}
 

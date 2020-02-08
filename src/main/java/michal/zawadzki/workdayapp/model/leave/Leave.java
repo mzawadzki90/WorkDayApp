@@ -18,10 +18,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import michal.zawadzki.workdayapp.model.Worker;
 
 @Entity
 @Table(name = "leave")
+@NoArgsConstructor
+@Getter
+@Setter
 public class Leave {
 
 	@Id
@@ -45,9 +52,6 @@ public class Leave {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "replacement_id")
 	private Worker replacement;
-
-	public Leave() {
-	}
 
 	public Leave(LeaveType type, Date since, Date till, int days, Worker replacement) {
 		this.type = type;
