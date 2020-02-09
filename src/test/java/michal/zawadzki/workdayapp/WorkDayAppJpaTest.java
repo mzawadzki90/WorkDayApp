@@ -39,6 +39,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
+//TODO: configure separate datasource
 class WorkDayAppJpaTest {
 
 	@Autowired
@@ -55,10 +56,10 @@ class WorkDayAppJpaTest {
 
 	@Test
 	void creationAndReadOfAllObjectsShouldSucceed() {
-		Worker worker = new WorkerBuilder().withFirstName("Jan")
-				.withLastName("Kowalski")
+		Worker worker = new WorkerBuilder().withFirstName("Michał")
+				.withLastName("Wiśniewski")
 				.withRole(Role.REGULAR_EMPLOYEE)
-				.withEmail("jan.kowalski@test.pl")
+				.withEmail("michal.wisniewski@test.pl")
 				.build();
 
 		em.persist(worker);
@@ -133,10 +134,10 @@ class WorkDayAppJpaTest {
 		List<Worker> workers = workerRepository.listWithCvAndOccupations();
 		assertEquals(workers.size(), 1);
 		Worker persistedWorker = workers.get(0);
-		assertEquals(persistedWorker.getFirstName(), "Jan");
-		assertEquals(persistedWorker.getLastName(), "Kowalski");
+		assertEquals(persistedWorker.getFirstName(), "Michał");
+		assertEquals(persistedWorker.getLastName(), "Wiśniewski");
 		assertEquals(persistedWorker.getRole(), Role.REGULAR_EMPLOYEE);
-		assertEquals(persistedWorker.getEmail(), "jan.kowalski@test.pl");
+		assertEquals(persistedWorker.getEmail(), "michal.wisniewski@test.pl");
 
 		List<Occupation> occupations = persistedWorker.getOccupations();
 		assertEquals(occupations.size(), 2);

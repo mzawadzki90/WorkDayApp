@@ -1,0 +1,2 @@
+INSERT INTO worker(first_name, last_name, role, email) VALUES ('Jan', 'Kowalski', 'REGULAR_EMPLOYEE', 'jan.kowalski@test.pl');
+INSERT INTO worker(first_name, last_name, role, email) VALUES ('Tomasz', 'Nowak', 'DIRECTOR', 'tomasz.nowak@test.pl');
