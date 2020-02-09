@@ -4,12 +4,13 @@
 */
 package michal.zawadzki.workdayapp.model.worktime;
 
+import michal.zawadzki.workdayapp.model.dictionary.Project;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import michal.zawadzki.workdayapp.model.dictionary.Project;
 
 @Entity
 @Table(name = "work_task")
@@ -25,11 +26,6 @@ public class WorkTask extends Task {
 	public WorkTask(WorkDay workDay, Long timeMills, Project project) {
 		super(workDay, timeMills);
 		this.project = project;
-	}
-
-	@Override
-	public String toString() {
-		return "WorkTask{" + "project=" + project + "} " + super.toString();
 	}
 
 }

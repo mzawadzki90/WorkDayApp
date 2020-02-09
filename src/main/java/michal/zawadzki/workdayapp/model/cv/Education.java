@@ -28,9 +28,4 @@ public class Education extends Experience {
 		this.title = title;
 	}
 
-	@Override
-	public String toString() {
-		return "Education{" + "schoolName='" + schoolName + '\'' + ", title='" + title + '\'' + "} " + super.toString();
-	}
-
 }

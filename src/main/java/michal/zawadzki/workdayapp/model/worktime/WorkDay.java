@@ -4,8 +4,6 @@
 */
 package michal.zawadzki.workdayapp.model.worktime;
 
-import java.util.Date;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "work_day")
@@ -58,12 +58,6 @@ public class WorkDay {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.tasks = tasks;
-	}
-
-	@Override
-	public String toString() {
-		return "WorkDay{" + "id=" + id + ", worktimeReport=" + worktimeReport + ", date=" + date + ", startTime=" + startTime + ", endTime="
-				+ endTime + ", tasks=" + tasks + ", specialTasks=" + specialTasks + '}';
 	}
 
 }

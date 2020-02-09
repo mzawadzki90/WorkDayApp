@@ -35,9 +35,4 @@ public abstract class Task {
 		this.timeMills = timeMills;
 	}
 
-	@Override
-	public String toString() {
-		return "Task{" + "id=" + id + ", workDay=" + workDay + ", timeMills=" + timeMills + '}';
-	}
-
 }

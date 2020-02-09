@@ -4,7 +4,10 @@
 */
 package michal.zawadzki.workdayapp.model;
 
-import java.util.Date;
+import michal.zawadzki.workdayapp.model.dictionary.Department;
+import michal.zawadzki.workdayapp.model.dictionary.Position;
+import michal.zawadzki.workdayapp.model.dictionary.Team;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,9 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import michal.zawadzki.workdayapp.model.dictionary.Department;
-import michal.zawadzki.workdayapp.model.dictionary.Position;
-import michal.zawadzki.workdayapp.model.dictionary.Team;
+import java.util.Date;
 
 @Entity
 @Table(name = "occupation")
@@ -117,12 +118,6 @@ public class Occupation {
 
 	public void setTill(Date till) {
 		this.till = till;
-	}
-
-	@Override
-	public String toString() {
-		return "Occupation{" + "id=" + id + ", worker=" + worker + ", department=" + department + ", team=" + team + ", position="
-				+ position + ", since=" + since + ", till=" + till + '}';
 	}
 
 }

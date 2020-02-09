@@ -66,10 +66,4 @@ public class Experience {
 		return shortDescription;
 	}
 
-	@Override
-	public String toString() {
-		return "Experience{" + "id=" + id + ", cv=" + cv + ", startYear=" + startYear + ", endYear=" + endYear + ", shortDescription='"
-				+ shortDescription + '\'' + '}';
-	}
-
 }

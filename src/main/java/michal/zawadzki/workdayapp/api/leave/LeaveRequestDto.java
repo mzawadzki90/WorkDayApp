@@ -1,10 +1,12 @@
-package michal.zawadzki.workdayapp.api;
+package michal.zawadzki.workdayapp.api.leave;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import michal.zawadzki.workdayapp.model.leave.LeaveRequestStatus;
 import michal.zawadzki.workdayapp.model.leave.LeaveType;
+
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -15,6 +17,8 @@ public class LeaveRequestDto {
 
     @NotNull
     private LeaveType type;
+
+    private LeaveRequestStatus status;
 
     @NotNull
     private Date since;
@@ -27,5 +31,11 @@ public class LeaveRequestDto {
 
     @JsonProperty("replacement_id")
     private Integer replacementId;
+
+    @JsonProperty("created_at")
+    private Date createdAt;
+
+    @JsonProperty("modifiedAt")
+    private Date modifiedAt;
 
 }

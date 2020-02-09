@@ -4,7 +4,11 @@
 */
 package michal.zawadzki.workdayapp.model;
 
-import java.util.List;
+import michal.zawadzki.workdayapp.model.cv.CV;
+import michal.zawadzki.workdayapp.model.equipment.Rent;
+import michal.zawadzki.workdayapp.model.leave.LeaveRequest;
+import michal.zawadzki.workdayapp.model.worktime.WorktimeReport;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -20,10 +24,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import michal.zawadzki.workdayapp.model.cv.CV;
-import michal.zawadzki.workdayapp.model.equipment.Rent;
-import michal.zawadzki.workdayapp.model.leave.LeaveRequest;
-import michal.zawadzki.workdayapp.model.worktime.WorktimeReport;
+import java.util.List;
 
 @Entity
 @Table(name = "worker")
@@ -210,14 +211,6 @@ public class Worker {
 
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
-	}
-
-	@Override
-	public String toString() {
-		return "Worker{" + "id=" + id + ", role=" + role + ", email='" + email + '\'' + ", firstName='" + firstName + '\'' + ", lastName='"
-				+ lastName + '\'' + ", supervisor=" + supervisor + ", cv=" + cv + ", occupations=" + occupations + ", leaveRequests="
-				+ leaveRequests + ", worktimeReports=" + worktimeReports + ", rents=" + rents + ", room='" + room + '\''
-				+ ", stationaryNumber='" + stationaryNumber + '\'' + ", mobileNumber='" + mobileNumber + '\'' + '}';
 	}
 
 }

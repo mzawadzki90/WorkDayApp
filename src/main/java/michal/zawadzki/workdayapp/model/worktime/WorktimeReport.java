@@ -4,8 +4,8 @@
 */
 package michal.zawadzki.workdayapp.model.worktime;
 
-import java.util.Date;
-import java.util.List;
+import michal.zawadzki.workdayapp.model.Worker;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,7 +23,8 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import michal.zawadzki.workdayapp.model.Worker;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "worktime_report")
@@ -72,12 +73,6 @@ public class WorktimeReport {
 	@PreUpdate
 	private void onUpdate() {
 		modifiedAt = new Date();
-	}
-
-	@Override
-	public String toString() {
-		return "WorktimeReport{" + "id=" + id + ", worker=" + worker + ", status=" + status + ", createdAt=" + createdAt + ", modifiedAt="
-				+ modifiedAt + ", workDays=" + workDays + '}';
 	}
 
 }

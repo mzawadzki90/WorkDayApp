@@ -4,13 +4,13 @@
 */
 package michal.zawadzki.workdayapp.model.equipment;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Entity
 @Table(name = "rent")
@@ -36,11 +36,6 @@ public class Rent {
 		this.since = since;
 		this.till = till;
 		this.comments = comments;
-	}
-
-	@Override
-	public String toString() {
-		return "Rent{" + "id=" + id + ", since=" + since + ", till=" + till + ", comments='" + comments + '\'' + '}';
 	}
 
 }

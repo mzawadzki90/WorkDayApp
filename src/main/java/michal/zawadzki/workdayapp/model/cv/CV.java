@@ -4,8 +4,9 @@
 */
 package michal.zawadzki.workdayapp.model.cv;
 
-import java.util.List;
-import java.util.Set;
+import michal.zawadzki.workdayapp.model.Worker;
+import michal.zawadzki.workdayapp.model.dictionary.Skill;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -21,8 +22,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import michal.zawadzki.workdayapp.model.Worker;
-import michal.zawadzki.workdayapp.model.dictionary.Skill;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cv")
@@ -123,12 +124,6 @@ public class CV {
 
 	public void setCertificates(List<Certificate> certificates) {
 		this.certificates = certificates;
-	}
-
-	@Override
-	public String toString() {
-		return "CV{" + "id=" + id + ", worker=" + worker + ", skills=" + skills + ", experiences=" + experiences + ", educations="
-				+ educations + ", languageSkills=" + languageSkills + ", certificates=" + certificates + '}';
 	}
 
 }

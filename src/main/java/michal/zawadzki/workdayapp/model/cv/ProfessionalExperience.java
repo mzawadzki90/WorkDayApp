@@ -30,10 +30,4 @@ public class ProfessionalExperience extends Experience {
 		this.positionName = positionName;
 	}
 
-	@Override
-	public String toString() {
-		return "ProfessionalExperience{" + "companyName='" + companyName + '\'' + ", positionName='" + positionName + '\'' + "} "
-				+ super.toString();
-	}
-
 }

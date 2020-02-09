@@ -4,9 +4,13 @@
 */
 package michal.zawadzki.workdayapp.model.leave;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import michal.zawadzki.workdayapp.model.Worker;
+import org.springframework.data.annotation.AccessType;
+import org.springframework.data.annotation.AccessType.Type;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -17,12 +21,17 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Entity
 @Table(name = "leave_request")
+@Getter
+@Setter
+@NoArgsConstructor
 public class LeaveRequest {
 
 	@EmbeddedId
+	@AccessType(Type.PROPERTY)
 	private LeaveRequestId id;
 
 	@Enumerated(EnumType.STRING)
@@ -36,9 +45,6 @@ public class LeaveRequest {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified_at", nullable = false)
 	private Date modifiedAt;
-
-	public LeaveRequest() {
-	}
 
 	public LeaveRequest(Worker worker, Leave leave, LeaveRequestStatus status) {
 		this.id = new LeaveRequestId(worker, leave);
@@ -55,11 +61,6 @@ public class LeaveRequest {
 	@PreUpdate
 	private void onUpdate() {
 		modifiedAt = new Date();
-	}
-
-	@Override
-	public String toString() {
-		return "LeaveRequest{" + "id=" + id + ", status=" + status + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
 	}
 
 }

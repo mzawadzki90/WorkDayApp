@@ -4,6 +4,8 @@
 */
 package michal.zawadzki.workdayapp.model.cv;
 
+import michal.zawadzki.workdayapp.model.dictionary.Language;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import michal.zawadzki.workdayapp.model.dictionary.Language;
 
 @Entity
 @Table(name = "language_skill")
@@ -76,11 +77,6 @@ public class LanguageSkill {
 
 	public void setLevel(LanguageLevel level) {
 		this.level = level;
-	}
-
-	@Override
-	public String toString() {
-		return "LanguageSkill{" + "id=" + id + ", cv=" + cv + ", language=" + language + ", level=" + level + '}';
 	}
 
 }

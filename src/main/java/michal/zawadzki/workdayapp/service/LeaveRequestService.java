@@ -1,12 +1,11 @@
 package michal.zawadzki.workdayapp.service;
 
-import michal.zawadzki.workdayapp.api.LeaveRequestDto;
 import michal.zawadzki.workdayapp.api.error.NoEntityException;
-import michal.zawadzki.workdayapp.api.mapper.LeaveRequestMapper;
 import michal.zawadzki.workdayapp.model.Worker;
 import michal.zawadzki.workdayapp.model.leave.Leave;
 import michal.zawadzki.workdayapp.model.leave.LeaveRequest;
 import michal.zawadzki.workdayapp.model.leave.LeaveRequestStatus;
+import michal.zawadzki.workdayapp.repository.LeaveRepository;
 import michal.zawadzki.workdayapp.repository.LeaveRequestRepository;
 import michal.zawadzki.workdayapp.repository.WorkerRepository;
 import org.springframework.context.annotation.Scope;
@@ -16,6 +15,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Service
 @Scope("prototype")
@@ -23,36 +29,51 @@ import javax.persistence.EntityManager;
 public class LeaveRequestService {
 
     private final LeaveRequestRepository leaveRequestRepository;
-
+    private final LeaveRepository leaveRepository;
     private final WorkerRepository workerRepository;
-
-    private final LeaveRequestMapper leaveRequestMapper;
-
     private final EntityManager entityManager;
 
     public LeaveRequestService(LeaveRequestRepository leaveRequestRepository,
+                               LeaveRepository leaveRepository,
                                WorkerRepository workerRepository,
-                               LeaveRequestMapper leaveRequestMapper, EntityManager entityManager) {
+                               EntityManager entityManager) {
         this.leaveRequestRepository = leaveRequestRepository;
+        this.leaveRepository        = leaveRepository;
         this.workerRepository       = workerRepository;
-        this.leaveRequestMapper     = leaveRequestMapper;
         this.entityManager          = entityManager;
     }
 
 
     public Page<LeaveRequest> listByWorkerId(int workerId, Pageable pageable) {
-        return leaveRequestRepository.listByWorkerId(workerId, pageable);
+        final Page<LeaveRequest> page = leaveRequestRepository.listByWorkerId(workerId, pageable);
+        final List<LeaveRequest> leaveRequests = page.getContent();
+        fetchLeave(leaveRequests);
+        return page;
     }
 
-    public void create(int workerId, LeaveRequestDto leaveRequestDto) {
+    public void create(int workerId, Leave leave) {
         final Worker worker = workerRepository.findById(workerId)
                                               .orElseThrow(
                                                       () -> new NoEntityException("Worker with given id not exists."));
-        final Leave leave = leaveRequestMapper.fromDto(leaveRequestDto);
         entityManager.persist(leave);
 
         final LeaveRequest leaveRequest = new LeaveRequest(worker, leave, LeaveRequestStatus.CREATED);
         leaveRequestRepository.save(leaveRequest);
+    }
+
+    private void fetchLeave(List<LeaveRequest> leaveRequests) {
+        if (isEmpty(leaveRequests)) {
+            return;
+        }
+
+        final Set<Integer> leaveIds =
+                leaveRequests.stream().map(leaveRequest -> leaveRequest.getId().getLeave().getId()).collect(
+                        Collectors.toSet());
+        final Map<Integer, Leave> leaveMap = leaveRepository.findAllByIdIn(
+                leaveIds).stream().collect(Collectors.toMap(Leave::getId, Function.identity()));
+
+        leaveRequests.forEach(
+                leaveRequest -> leaveRequest.getId().setLeave(leaveMap.get(leaveRequest.getId().getLeave().getId())));
     }
 
 }

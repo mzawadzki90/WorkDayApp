@@ -4,7 +4,6 @@
 */
 package michal.zawadzki.workdayapp.model.equipment;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "equipment")
@@ -49,12 +49,6 @@ public class Equipment {
 		this.producer = producer;
 		this.productionYear = productionYear;
 		this.rents = rents;
-	}
-
-	@Override
-	public String toString() {
-		return "Equipment{" + "id=" + id + ", category=" + category + ", model='" + model + '\'' + ", producer='" + producer + '\''
-				+ ", productionYear=" + productionYear + ", rents=" + rents + '}';
 	}
 
 }

@@ -43,9 +43,4 @@ public abstract class Dictionary {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Dictionary{" + "id=" + id + ", name='" + name + '\'' + '}';
-	}
-
 }

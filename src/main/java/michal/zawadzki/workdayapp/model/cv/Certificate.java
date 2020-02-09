@@ -43,9 +43,4 @@ public class Certificate extends Experience {
 		this.issuedBy = issuedBy;
 	}
 
-	@Override
-	public String toString() {
-		return "Certificate{" + "name='" + name + '\'' + ", issuedBy='" + issuedBy + '\'' + "} " + super.toString();
-	}
-
 }

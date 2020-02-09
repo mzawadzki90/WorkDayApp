@@ -4,13 +4,14 @@
 */
 package michal.zawadzki.workdayapp.model.equipment;
 
-import java.io.Serializable;
-import java.util.Objects;
+import michal.zawadzki.workdayapp.model.Worker;
+
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import michal.zawadzki.workdayapp.model.Worker;
+import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class RentId implements Serializable {
@@ -60,11 +61,6 @@ public class RentId implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(getWorker(), getEquipment());
-	}
-
-	@Override
-	public String toString() {
-		return "RentId{" + "worker=" + worker + ", equipment=" + equipment + '}';
 	}
 
 }
