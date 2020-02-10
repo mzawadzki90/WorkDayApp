@@ -36,7 +36,7 @@ public class LeaveRequestController {
     }
 
     @GetMapping("worker/{workerId}")
-    public LeaveRequestsDto listByWorkerId(@PathVariable int workerId, @PageableDefault Pageable pageable) {
+    public LeaveRequestsDto listByWorkerId(@PathVariable int workerId, @PageableDefault(size = 50) Pageable pageable) {
         final Page<LeaveRequest> page = leaveRequestService.listByWorkerId(workerId, pageable);
         final List<LeaveRequestDto> leaveRequests =
                 page.getContent().stream().map(leaveRequestMapper::toDto)

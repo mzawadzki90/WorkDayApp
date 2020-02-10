@@ -1,6 +1,7 @@
 package michal.zawadzki.workdayapp.service;
 
 import michal.zawadzki.workdayapp.model.Worker;
+import michal.zawadzki.workdayapp.model.leave.LeaveRequest;
 import michal.zawadzki.workdayapp.repository.LeaveRequestRepository;
 import michal.zawadzki.workdayapp.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,8 +34,10 @@ public class WorkerService {
     }
 
     public int getFreeDays(int workerId) {
-        final int used = leaveRequestRepository.countAcceptedAndCreatedByWorkerId(workerId, yearStart());
-        return freeDays - used;
+        final List<LeaveRequest> used = leaveRequestRepository.findAcceptedAndCreatedByWorkerId(workerId, yearStart());
+        final Integer usedSum =
+                used.stream().map(leaveRequest -> leaveRequest.getId().getLeave().getDays()).reduce(0, Integer::sum);
+        return freeDays - usedSum;
     }
 
     private Date yearStart() {
