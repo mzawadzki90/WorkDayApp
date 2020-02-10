@@ -12,10 +12,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
+
 @Repository
 public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, LeaveRequestId> {
 
-    @Query(value = "SELECT lr FROM LeaveRequest lr JOIN lr.id.worker w WHERE w.id = :workerId")
+    @Query("SELECT lr FROM LeaveRequest lr JOIN lr.id.worker w WHERE w.id = :workerId")
     Page<LeaveRequest> listByWorkerId(int workerId, Pageable pageable);
 
+    @Query("SELECT DISTINCT COUNT(lr) FROM LeaveRequest lr JOIN lr.id.leave l JOIN lr.id.worker w WHERE lr.status IN ('CREATED', 'ACCEPTED')" +
+           " AND l.since > :yearStart AND w.id = :workerId")
+    int countAcceptedAndCreatedByWorkerId(int workerId, Date yearStart);
 }

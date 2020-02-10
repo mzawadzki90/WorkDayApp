@@ -38,4 +38,10 @@ public class WorkerController {
                                                                          worker.getFirstName(), worker.getEmail()));
     }
 
+    @GetMapping
+    @RequestMapping("{workerId}/free/days")
+    public int getFreeDays(@PathVariable int workerId) {
+        return workerService.getFreeDays(workerId);
+    }
+
 }
