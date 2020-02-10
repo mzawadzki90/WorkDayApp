@@ -1,11 +1,9 @@
-package michal.zawadzki.workdayapp.api.leave;
+package michal.zawadzki.workdayapp.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import michal.zawadzki.workdayapp.api.MetaDto;
 
 import java.util.List;
 
@@ -13,11 +11,10 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @AllArgsConstructor
-public class LeaveRequestsDto {
+public class DictionariesDto {
 
     private MetaDto meta;
 
-    @JsonProperty("leave_requests")
-    private List<LeaveRequestDto> leaveRequests;
+    private List<DictionaryDto> dictionaries;
 
 }
