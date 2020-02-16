@@ -1,8 +1,11 @@
 package michal.zawadzki.workdayapp.service;
 
+import michal.zawadzki.workdayapp.api.error.NoEntityException;
 import michal.zawadzki.workdayapp.model.Worker;
 import michal.zawadzki.workdayapp.model.leave.LeaveRequest;
+import michal.zawadzki.workdayapp.model.worktime.WorkerCredentials;
 import michal.zawadzki.workdayapp.repository.LeaveRequestRepository;
+import michal.zawadzki.workdayapp.repository.WorkerCredentialsRepository;
 import michal.zawadzki.workdayapp.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
@@ -23,10 +26,20 @@ public class WorkerService {
 
     private final LeaveRequestRepository leaveRequestRepository;
 
+    private final WorkerCredentialsRepository workerCredentialsRepository;
+
     public WorkerService(WorkerRepository workerRepository,
-                         LeaveRequestRepository leaveRequestRepository) {
-        this.workerRepository       = workerRepository;
-        this.leaveRequestRepository = leaveRequestRepository;
+                         LeaveRequestRepository leaveRequestRepository,
+                         WorkerCredentialsRepository workerCredentialsRepository) {
+        this.workerRepository            = workerRepository;
+        this.leaveRequestRepository      = leaveRequestRepository;
+        this.workerCredentialsRepository = workerCredentialsRepository;
+    }
+
+    public Worker login(String login, String password) {
+        return workerCredentialsRepository.getByLoginAndPasswordWithWorker(login, password)
+                                          .map(WorkerCredentials::getWorker).orElseThrow(
+                        () -> new NoEntityException("Worker with given credentials not exists."));
     }
 
     public List<Worker> findAllWithoutIdOrderedByLastName(int omittedId) {
