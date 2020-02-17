@@ -57,12 +57,15 @@ public class Leave {
     @JoinColumn(name = "replacement_id")
     private Worker replacement;
 
-    public Leave(LeaveType type, Date since, Date till, int days, Worker replacement) {
+    private String note;
+
+    public Leave(LeaveType type, Date since, Date till, int days, Worker replacement, String note) {
         this.type        = type;
         this.since       = since;
         this.till        = till;
         this.days        = days;
         this.replacement = replacement;
+        this.note        = note;
     }
 
 }

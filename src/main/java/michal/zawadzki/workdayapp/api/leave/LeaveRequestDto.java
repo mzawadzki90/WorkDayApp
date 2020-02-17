@@ -32,6 +32,8 @@ public class LeaveRequestDto {
     @JsonProperty("replacement_id")
     private Integer replacementId;
 
+    private String note;
+
     @JsonProperty("created_at")
     private Date createdAt;
 
