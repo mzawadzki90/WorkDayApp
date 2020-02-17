@@ -59,6 +59,10 @@ public class Leave {
 
     private String note;
 
+    public Leave(int leaveId) {
+        this.id = leaveId;
+    }
+
     public Leave(LeaveType type, Date since, Date till, int days, Worker replacement, String note) {
         this.type        = type;
         this.since       = since;

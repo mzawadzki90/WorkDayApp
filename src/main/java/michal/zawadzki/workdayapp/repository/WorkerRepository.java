@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface WorkerRepository extends JpaRepository<Worker, Integer> {
@@ -21,5 +22,7 @@ public interface WorkerRepository extends JpaRepository<Worker, Integer> {
 
 	@Query("SELECT w FROM Worker w WHERE w.id <> :omittedId")
 	List<Worker> findAllWithoutId(int omittedId, Sort lastName);
+
+	List<Worker> findAllByIdIn(Set<Integer> workerIds);
 
 }

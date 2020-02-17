@@ -27,9 +27,14 @@ public class LeaveRequestId implements Serializable {
 	public LeaveRequestId() {
 	}
 
+	public LeaveRequestId(int workerId, int leaveId) {
+		this.worker = new Worker(workerId);
+		this.leave  = new Leave(leaveId);
+	}
+
 	public LeaveRequestId(Worker worker, Leave leave) {
 		this.worker = worker;
-		this.leave = leave;
+		this.leave  = leave;
 	}
 
 	public Worker getWorker() {

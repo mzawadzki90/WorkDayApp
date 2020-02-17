@@ -40,4 +40,19 @@ public class LeaveRequestDto {
     @JsonProperty("modifiedAt")
     private Date modifiedAt;
 
+    @JsonProperty("leave_id")
+    private Integer leaveId;
+
+    @JsonProperty("worker_id")
+    private Integer workerId;
+
+    @JsonProperty("worker_first_name")
+    private String workerFirstName;
+
+    @JsonProperty("worker_last_name")
+    private String workerLastName;
+
+    @JsonProperty("worker_email")
+    private String workerEmail;
+
 }

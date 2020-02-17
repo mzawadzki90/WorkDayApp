@@ -83,15 +83,21 @@ public class Worker {
 	public Worker() {
 	}
 
-	public Worker(Role role, String email, String firstName, String lastName, Worker supervisor, CV cv, List<Occupation> occupations,
-			List<LeaveRequest> leaveRequests, List<WorktimeReport> worktimeReports, List<Rent> rents, String room, String stationaryNumber,
-			String mobileNumber) {
-		this.role = role;
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.supervisor = supervisor;
-		this.cv = cv;
+	public Worker(int workerId) {
+		this.id = workerId;
+	}
+
+	public Worker(Role role, String email, String firstName, String lastName, Worker supervisor, CV cv,
+				  List<Occupation> occupations,
+				  List<LeaveRequest> leaveRequests, List<WorktimeReport> worktimeReports, List<Rent> rents, String room,
+				  String stationaryNumber,
+				  String mobileNumber) {
+		this.role             = role;
+		this.email            = email;
+		this.firstName        = firstName;
+		this.lastName         = lastName;
+		this.supervisor       = supervisor;
+		this.cv               = cv;
 		this.occupations = occupations;
 		this.leaveRequests = leaveRequests;
 		this.worktimeReports = worktimeReports;

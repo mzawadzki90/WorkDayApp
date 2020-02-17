@@ -27,13 +27,26 @@ public interface LeaveRequestMapper {
         leave.setReplacement(worker);
     }
 
-    default LeaveRequestDto toDto(LeaveRequest leaveRequest) {
+    default LeaveRequestDto toDtoWithLeaveAndWorker(LeaveRequest leaveRequest) {
+        final LeaveRequestDto leaveRequestDto = toDtoWithLeave(leaveRequest);
+
+        final Worker worker = leaveRequest.getId().getWorker();
+        leaveRequestDto.setWorkerId(worker.getId());
+        leaveRequestDto.setWorkerFirstName(worker.getFirstName());
+        leaveRequestDto.setWorkerLastName(worker.getLastName());
+        leaveRequestDto.setWorkerEmail(worker.getEmail());
+
+        return leaveRequestDto;
+    }
+
+    default LeaveRequestDto toDtoWithLeave(LeaveRequest leaveRequest) {
         final LeaveRequestDto leaveRequestDto = new LeaveRequestDto();
         leaveRequestDto.setStatus(leaveRequest.getStatus());
         leaveRequestDto.setCreatedAt(leaveRequest.getCreatedAt());
         leaveRequestDto.setModifiedAt(leaveRequest.getCreatedAt());
 
         final Leave leave = leaveRequest.getId().getLeave();
+        leaveRequestDto.setLeaveId(leave.getId());
         leaveRequestDto.setType(leave.getType());
         leaveRequestDto.setSince(leave.getSince());
         leaveRequestDto.setTill(leave.getTill());
