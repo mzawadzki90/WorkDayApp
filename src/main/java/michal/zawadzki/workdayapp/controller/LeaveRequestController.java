@@ -73,7 +73,7 @@ public class LeaveRequestController {
     public ResponseEntity<Void> updateStatus(@PathVariable int workerId, @PathVariable int leaveId,
                                              @RequestBody @NotNull LeaveRequestStatusDto status
                                             ) {
-        leaveRequestService.updateStatus(workerId, leaveId, status.getStatus());
+        leaveRequestService.updateStatus(workerId, leaveId, status.getStatus(), status.getRejectionReason());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

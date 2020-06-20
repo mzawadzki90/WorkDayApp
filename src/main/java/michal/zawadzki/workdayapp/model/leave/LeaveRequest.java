@@ -4,13 +4,7 @@
 */
 package michal.zawadzki.workdayapp.model.leave;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import michal.zawadzki.workdayapp.model.Worker;
-import org.springframework.data.annotation.AccessType;
-import org.springframework.data.annotation.AccessType.Type;
-
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -21,7 +15,12 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.util.Date;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import michal.zawadzki.workdayapp.model.Worker;
+import org.springframework.data.annotation.AccessType;
+import org.springframework.data.annotation.AccessType.Type;
 
 @Entity
 @Table(name = "leave_request")
@@ -41,6 +40,9 @@ public class LeaveRequest {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", nullable = false, updatable = false)
 	private Date createdAt;
+
+	@Column(name = "rejection_reason")
+	private String rejectionReason;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified_at", nullable = false)
