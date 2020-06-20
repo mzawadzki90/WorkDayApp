@@ -1,5 +1,8 @@
 package michal.zawadzki.workdayapp.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.validation.constraints.NotNull;
 import michal.zawadzki.workdayapp.api.MetaDto;
 import michal.zawadzki.workdayapp.api.leave.LeaveRequestDto;
 import michal.zawadzki.workdayapp.api.leave.LeaveRequestMapper;
@@ -21,10 +24,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/leave/requests")
@@ -56,8 +55,7 @@ public class LeaveRequestController {
                                                                                         direction = Sort.Direction.DESC)
             Pageable pageable) {
         final Page<LeaveRequest> page = leaveRequestService.listByWorkerId(workerId, pageable);
-        final List<LeaveRequestDto> leaveRequests =
-                page.getContent().stream().map(leaveRequestMapper::toDtoWithLeave)
+        final List<LeaveRequestDto> leaveRequests = page.getContent().stream().map(leaveRequestMapper::toDtoWithLeaveAndWorker)
                     .collect(Collectors.toList());
         final MetaDto meta = new MetaDto(page.getNumber(), page.getSize(), page.getTotalPages());
 

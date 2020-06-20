@@ -1,24 +1,26 @@
 package michal.zawadzki.workdayapp.controller;
 
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.validation.Valid;
 import michal.zawadzki.workdayapp.api.DictionariesDto;
 import michal.zawadzki.workdayapp.api.DictionaryDto;
 import michal.zawadzki.workdayapp.api.MetaDto;
+import michal.zawadzki.workdayapp.api.worker.WorkerDto;
 import michal.zawadzki.workdayapp.api.worker.login.CredentialDto;
 import michal.zawadzki.workdayapp.api.worker.login.WorkerLoginDto;
 import michal.zawadzki.workdayapp.api.worker.login.WorkerLoginDtoMapper;
 import michal.zawadzki.workdayapp.model.Worker;
+import michal.zawadzki.workdayapp.serializer.worker.WorkerSerializer;
 import michal.zawadzki.workdayapp.service.WorkerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/workers")
@@ -28,9 +30,8 @@ public class WorkerController {
 
     private final WorkerLoginDtoMapper workerLoginDtoMapper;
 
-    public WorkerController(WorkerService workerService,
-                            WorkerLoginDtoMapper workerLoginDtoMapper) {
-        this.workerService        = workerService;
+    public WorkerController(WorkerService workerService, WorkerLoginDtoMapper workerLoginDtoMapper) {
+        this.workerService = workerService;
         this.workerLoginDtoMapper = workerLoginDtoMapper;
     }
 
@@ -39,6 +40,12 @@ public class WorkerController {
     public WorkerLoginDto login(@RequestBody @Valid CredentialDto credentialDto) {
         final Worker worker = workerService.login(credentialDto.getLogin(), credentialDto.getPassword());
         return workerLoginDtoMapper.fromWorker(worker);
+    }
+
+    @GetMapping
+    public List<WorkerDto> workers(@RequestParam("keyword") String keyword) {
+        List<Worker> workers = workerService.list(keyword);
+        return workers.stream().map(WorkerSerializer::toWorkerDto).collect(Collectors.toList());
     }
 
     @GetMapping
@@ -51,8 +58,8 @@ public class WorkerController {
     }
 
     private Function<Worker, DictionaryDto> toDictionaryDto() {
-        return worker -> new DictionaryDto(worker.getId(), String.format("%s %s %s", worker.getLastName(),
-                                                                         worker.getFirstName(), worker.getEmail()));
+        return worker -> new DictionaryDto(worker.getId(),
+                String.format("%s %s %s", worker.getLastName(), worker.getFirstName(), worker.getEmail()));
     }
 
     @GetMapping
