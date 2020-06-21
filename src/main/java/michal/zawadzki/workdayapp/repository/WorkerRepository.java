@@ -29,7 +29,7 @@ public interface WorkerRepository extends JpaRepository<Worker, Integer> {
     List<Worker> listWithSupervisorAndOccupations();
 
     @Query("SELECT DISTINCT w FROM Worker w LEFT JOIN FETCH w.supervisor LEFT JOIN FETCH w.occupations o LEFT JOIN FETCH o.position"
-            + " LEFT JOIN FETCH o.department  LEFT JOIN FETCH o.team WHERE LOWER(w.lastName) LIKE LOWER(:keyword) OR LOWER(w.firstName) = LOWER(:keyword)"
+            + " LEFT JOIN FETCH o.department  LEFT JOIN FETCH o.team WHERE LOWER(w.lastName) LIKE LOWER(:keyword) OR LOWER(w.firstName) LIKE LOWER(:keyword)"
             + " ORDER BY w.lastName ASC, w.firstName ASC")
     List<Worker> listWithSupervisorAndOccupationsByKeyword(String keyword);
 
